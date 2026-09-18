@@ -1,7 +1,7 @@
 # Markdown Resume
 
 This repo allows you to build/maintain your resume in a Markdown file, and then publish it into an HTML or PDF file.
-Technically, you could output it into any file you wanted with pandoc, or wkhtmltopdf, but I wasn't interested in those scenarios so I explore those avenues.
+Technically, you could output it into any file you wanted with pa1
 
 The inspiration for this project came from my need to look for a job, my need to update my resume, and my desire not to have to write something in Google docs, or Microsoft Word, so I scoured the web for newer way to build/maintain a resume, while doing so I ran into this [project by Sonya Sawtelle](https://sdsawtelle.github.io/blog/output/simple-markdown-resume-with-pandoc-and-wkhtmltopdf.html).
 
@@ -33,30 +33,30 @@ A lot has changed since Sonya wrote her blog post and shared her workflow, so he
     brew install pandoc
 ```
 
-## [Wkhtmltopdf](https://wkhtmltopdf.org)
+## [WeasyPrint](https://weasyprint.org)
 
 ```
-    brew install wkhtmltopdf
+    brew install weasyprint
 ```
 
 ## Markdown to HTML
 
 ```
-pandoc resume.md -f markdown -t html -c resume-stylesheet.css -s -o resume.html
+pandoc resume.md -f markdown -t html -c resume-stylesheet.css --embed-resources --standalone -o resume.html
 ```
 
 ## Markdown to PDF
 
 ```
-pandoc resume.md -f markdown -t pdf --pdf-engine=wkhtmltopdf -c resume-stylesheet.css -s -o resume.pdf
+pandoc resume.md -f markdown -t pdf --pdf-engine=weasyprint -c resume-stylesheet.css -o resume.pdf
 ```
 
 ## HTML to PDF
 
-If you want to convert from HTML to PDF for some reason, you'll need to add a switch to wkhtmltopdf so that it works properly.
+If you want to convert from HTML to PDF for some reason, you can point WeasyPrint at the HTML file directly.
 
 ```
-wkhtmltopdf --enable-local-file-access resume.html resume.pdf
+weasyprint resume.html resume.pdf
 ```
 
 # TODO
