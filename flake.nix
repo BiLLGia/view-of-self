@@ -12,25 +12,24 @@
 
         pkgs = import nixpkgs {
           inherit system;
-          config = {
-            permittedInsecurePackages = [ "openssl-1.1.1w" ];
-          };
         };
 
         buildInputs = with pkgs; [
           pandoc
-          wkhtmltopdf-bin
+          weasyprint
         ];
 
         buildPhase = ''
           pandoc resume.md \
           -t html -f markdown \
-          -c style.css --self-contained \
+          -c resume-stylesheet.css --embed-resources --standalone \
           -o resume.html
 
-          wkhtmltopdf --enable-local-file-access \
-          resume.html \
-          resume.pdf
+          pandoc resume.md \
+          -t pdf -f markdown \
+          --pdf-engine=weasyprint \
+          -c resume-stylesheet.css \
+          -o resume.pdf
         '';
 
       in with pkgs; {
