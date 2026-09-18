@@ -1154,3 +1154,11 @@ sub {
 .author {
     display: none
 }
+
+/* Page margins for WeasyPrint PDF output */
+@page {
+    margin-top: 1cm;
+    margin-bottom: 2cm;
+    margin-left: 2cm;
+    margin-right: 2cm;
+}
