@@ -16,7 +16,7 @@
 
         buildInputs = with pkgs; [
           pandoc
-          weasyprint
+          python3Packages.weasyprint
         ];
 
         buildPhase = ''
